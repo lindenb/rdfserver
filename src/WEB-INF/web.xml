@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+                      http://java.sun.com/xml/ns/javaee/web-app_2_4.xsd"
+  version="2.4"
+  > 
+    <listener>
+			<listener-class>org.lindenb.rdfserver.ContextListener</listener-class>
+	</listener>
+  
+  
+    <context-param>
+	        	<param-name>rdf.schema</param-name>
+	        	<param-value>file:///home/lindenb/sequindex.rdf</param-value>
+	</context-param>
+    <context-param>
+	        	<param-name>rdf.data</param-name>
+	        	<param-value>file:///home/lindenb/sequindex.rdf</param-value>
+	</context-param>
+	
+	<filter>
+	 <filter-name>model.lock.read</filter-name>
+	 <filter-class>org.lindenb.rdfserver.LockFilter</filter-class>
+	 <init-param>
+	    <param-name>lock</param-name>
+	    <param-value>read</param-value>
+	 </init-param>
+	</filter>
+
+	<filter-mapping>
+	 <filter-name>model.lock.read</filter-name>
+	 <url-pattern>/dump</url-pattern>
+	</filter-mapping>
+	
+	
+	
+	<servlet>
+      <servlet-name>dump</servlet-name>
+      <servlet-class>org.lindenb.rdfserver.DumpServlet</servlet-class>
+    </servlet>
+    
+     <servlet-mapping>
+       <servlet-name>dump</servlet-name>
+       <url-pattern>/dump</url-pattern>
+    </servlet-mapping>
+	<!-- 
+	
+	
+ 	
+	
+ 
+
+ 	<listener>
+ 		<listener-class>fr.inserm.umr915.vcfserver.j2ee.BerkeleyDBContext</listener-class>
+ 	</listener>
+
+	<servlet>
+      <servlet-name>test</servlet-name>
+      <servlet-class>fr.inserm.umr915.vcfserver.j2ee.EchoServlet</servlet-class>
+    </servlet>
+    
+     <servlet-mapping>
+       <servlet-name>test</servlet-name>
+       <url-pattern>/test</url-pattern>
+    </servlet-mapping>
+
+
+ -->
+ 
+    <jsp-config>
+    	<!-- 
+        <taglib>
+                <taglib-uri>http://java.sun.com/jstl/fmt</taglib-uri>
+                <taglib-location>/WEB-INF/tld/fmt.tld</taglib-location>
+        </taglib>
+
+
+        <taglib>
+                <taglib-uri>http://java.sun.com/jstl/core</taglib-uri>
+                <taglib-location>/WEB-INF/tld/c.tld</taglib-location>
+        </taglib>
+
+
+
+        <taglib>
+                <taglib-uri>http://java.sun.com/jstl/sql</taglib-uri>
+                <taglib-location>/WEB-INF/tld/sql.tld</taglib-location>
+        </taglib>
+
+
+
+        <taglib>
+                <taglib-uri>http://java.sun.com/jstl/x</taglib-uri>
+                <taglib-location>/WEB-INF/tld/x.tld</taglib-location>
+        </taglib>
+
+        <taglib>
+                <taglib-uri>http://java.sun.com/jstl/functions</taglib-uri>
+                <taglib-location>/WEB-INF/tld/fn.tld</taglib-location>
+        </taglib>
+	
+
+	 <taglib>
+                <taglib-uri>http://org.lindenb.rdfserver</taglib-uri>
+                <taglib-location>/WEB-INF/tld/rdfserver.tld</taglib-location>
+     </taglib>
+ -->
+	  <!--  MY TAGS -->
+</jsp-config>
+
+<welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+</welcome-file-list>
+
+
+</web-app>
