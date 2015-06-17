@@ -81,9 +81,39 @@
 		<echo>http://localhost:8080/rdfserver</echo>
 	</target>
 
-	
-		
-    
+	<property name="jquery.ui.version" value="1.10.3"/>
+	<target name="check.jquery.ui">
+		<available file="src/main/webapp/js/jquery-ui/ui/jquery.ui.core.js" property="jquery.ui.present"/>
+	</target> 
+    	<target name="jquery.ui" depends="check.jquery.ui,jquery"  unless="jquery.ui.present">
+    		<get 
+    			verbose="on" 
+    			skipexisting="true"
+    			dest="jquery-ui-${jquery.ui.version}.zip"
+    			src="http://jqueryui.com/resources/download/jquery-ui-${jquery.ui.version}.zip"
+    			/>
+
+    		<unzip src="jquery-ui-${jquery.ui.version}.zip"
+    			dest="src/main/webapp/js"
+    			/>
+    		<delete file="jquery-ui-${jquery.ui.version}.zip"/>
+    		<move
+    			file="src/main/webapp/js/jquery-ui-${jquery.ui.version}"
+    			tofile="src/main/webapp/js/jquery-ui"
+    			/>
+    		<delete dir="src/main/webapp/js/jquery-ui/tests"/>
+    		<delete dir="src/main/webapp/js/jquery-ui/demos"/>
+    	</target>
+    	
+    	<property name="jquery.version" value="1.10.2"/>
+    	<target name="jquery">
+    		<mkdir dir="src/main/webapp/js/jquery"/>
+		<get
+			skipexisting="true"
+			verbose="on" 
+			dest="src/main/webapp/js/jquery/query.js" 
+			src="http://code.jquery.com/jquery-${jquery.version}.min.js" />
+	</target> 
     
 
     

@@ -3,14 +3,11 @@ package org.lindenb.rdfserver;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
-
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
-import com.hp.hpl.jena.util.FileUtils;
 
 public class ContextListener implements ServletContextListener
 	{
-	
 	@Override
 	public void contextInitialized(ServletContextEvent evt)
 		{
@@ -23,8 +20,6 @@ public class ContextListener implements ServletContextListener
 		Model instances=ModelFactory.createDefaultModel();
 		instances.read(ctx.getInitParameter("rdf.data"));
 		ctx.setAttribute("rdf.data",instances);
-		
-		
 		}
 	
 	@Override

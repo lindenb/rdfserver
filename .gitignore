@@ -4,3 +4,8 @@
 *.jar
 *.war
 *.ear
+*~
+jeter*
+libs
+.classpath
+.project
